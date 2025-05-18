@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Charles Spurgeon Morning and Evening Devotions</title>
+    <title>Morning, Evening, and Promise Claimed</title>
     <style>
       body {
         font-family: sans-serif;
@@ -25,26 +25,34 @@
   </head>
   <body>
 
-    <h2>Spurgeon Daily Morning and Evening Devotions</h2>
+    <h2>Charles Spurgeon Daily Devotional and Bank of Faith Promise Claimed</h2>
 
     <button onclick="loadSermon('M')">Morning</button>
     <button onclick="loadSermon('E')">Evening</button>
+    <button onclick="loadSermon('P')">Promise Claimed</button>
 
     <iframe id="playerFrame" src="" allow="autoplay"></iframe>
 
     <script>
-      function loadSermon(timeCode) {
+      function loadSermon(type) {
         const today = new Date();
         const mm = String(today.getMonth() + 1).padStart(2, '0');
         const dd = String(today.getDate()).padStart(2, '0');
         const dateCode = mm + dd;
 
-        const id = `popme${dateCode}${timeCode}`;
-        const url = `https://www.sermonaudio.com/sermons/${id}/a?autoplay=true&popout=true`;
+        let id;
 
+        if (type === 'M' || type === 'E') {
+          id = `popme${dateCode}${type}`;
+        } else if (type === 'P') {
+          id = `fcb${dateCode}`;
+        }
+
+        const url = `https://www.sermonaudio.com/sermons/${id}/a?autoplay=true&popout=true`;
         document.getElementById('playerFrame').src = url;
       }
     </script>
 
   </body>
 </html>
+
